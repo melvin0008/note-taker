@@ -10,4 +10,4 @@ var Home = React.createClass({
 	}
 })
 
-module.exports = Main;
+module.exports = Home;

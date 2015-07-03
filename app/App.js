@@ -1,6 +1,6 @@
 var React = require('react')
 var Router = require('react-router')
-var router = require('./config/routes')
+var routes = require('./config/routes')
 
 Router.run(routes,function(Root){
 	React.render(<Root/>,document.getElementById('app'))
