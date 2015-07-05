@@ -8,7 +8,8 @@ var UserProfiles = React.createClass({
 	render: function(){
 		return (
 			<div>
-          		UserName  : {this.props.username}
+				UserProfile <br/>
+          		UserName  : {this.props.username} <br/>
 	      		Bio : {this.props.bio}
 	      	</div>
 		)
