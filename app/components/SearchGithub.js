@@ -16,7 +16,7 @@ var SearchGithub = React.createClass({
             <input type="text" className="form-control" ref="username" />
           </div>
           <div className="form-group col-sm-5">
-            <button type="submit" className="btn btn-block btn-primary">Search Github </button>
+            <button type="submit" className="btn btn-block btn-primary">Search Github for a username</button>
           </div>
         </form>
       </div>

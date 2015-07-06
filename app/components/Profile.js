@@ -5,20 +5,29 @@ var UserProfile = require('./Github/UserProfile');
 var Notes = require('./Notes/Notes');
 var ReactFireMixin = require('reactfire');
 var Firebase = require('firebase')
+var helpers = require('../utils/helpers');
 
 var Profile = React.createClass({
  mixins:[Router.State,ReactFireMixin],
   getInitialState: function(){
     return {
       notes: [],
-      bio: {status: "hot"},
-      repos: ['gem']
+      bio: {},
+      repos: []
     }
   },
   componentDidMount: function(){
     this.ref=new Firebase('https://notetakelearning.firebaseio.com')
     var childRef = this.ref.child(this.getParams().username)
     this.bindAsArray(childRef,'notes');
+
+    helpers.getGithubInfo(this.getParams().username)
+      .then(function(dataObj){
+        this.setState({
+          bio: dataObj.bio,
+          repos: dataObj.repos
+        });
+      }.bind(this));
   },
   componentWillUnmount:function(){
     this.unbind('notes')
