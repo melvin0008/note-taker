@@ -18,6 +18,10 @@ var Profile = React.createClass({
   },
   componentDidMount: function(){
     this.ref=new Firebase('https://notetakelearning.firebaseio.com')
+    this.init();
+  },
+
+  init : function(){
     var childRef = this.ref.child(this.getParams().username)
     this.bindAsArray(childRef,'notes');
 
@@ -27,10 +31,15 @@ var Profile = React.createClass({
           bio: dataObj.bio,
           repos: dataObj.repos
         });
-      }.bind(this));
+      }.bind(this))
+
   },
   componentWillUnmount:function(){
     this.unbind('notes')
+  },
+  componentWillReceiveProps: function(){
+    this.unbind('notes');
+    this.init();
   },
   handleAddNote:function(newNote){
       this.ref.child(this.getParams().username).set(this.state.notes.concat(newNote))
